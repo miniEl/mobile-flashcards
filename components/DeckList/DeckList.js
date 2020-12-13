@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, Text } from 'react-native';
 import styles from './DeckListStyles';
 
@@ -24,4 +24,5 @@ const mapStateToProps = ({ decks }) => {
   }
 }
 
-export default connect(mapStateToProps)(DeckList);
+export default DeckList;
+// export default connect(mapStateToProps)(DeckList);
