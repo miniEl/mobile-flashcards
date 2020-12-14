@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Notifications } from 'expo';
 import * as Permissions from "expo-permissions";
 
@@ -6,16 +6,12 @@ const DECKS_STORAGE_KEY = 'MerhanElkheshen:decks';
 const CARDS_STORAGE_KEY = 'MerhanElkheshen:cards';
 const NOTIFICATION_KEY = 'MerhanElkheshen:notifications';
 
-const tempData = (key) => {
-    AsyncStorage.setItem(key, JSON.stringify({}));
-    return {};
-};
 
 export const getData = () => {
     return AsyncStorage.multiGet([DECKS_STORAGE_KEY, CARDS_STORAGE_KEY])
-        .then(results => {
+        .then((results) => {
             const obj = {};
-            results.map(result => {
+            results.map((result) => {
                 obj[result[0].slice(12)] = result[1] ? JSON.parse(result[1]) : tempData(result[0])
             });
             return obj;
@@ -92,6 +88,11 @@ export const setLocalNotification = () => {
             }
         })
 }
+
+const tempData = (key) => {
+    AsyncStorage.setItem(key, JSON.stringify({}));
+    return {};
+};
 
 const generateId = () => {
     return (

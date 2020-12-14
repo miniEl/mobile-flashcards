@@ -11,7 +11,9 @@ class DeckList extends Component {
   }
   componentDidMount = () => {
     // const decks = Object.values(this.props.decks);
-    // console.log(decks);
+    console.log('PROPS::');
+    console.log(this.props);
+
   }
   render() {
     const { decksList } = this.state;

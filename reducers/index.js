@@ -1,10 +1,10 @@
-import { ActionTypes } from '../actions';
+import { ActionTypes } from '../actions/index';
 
 function decks(state = {}, action) {
     switch (action.type) {
         case ActionTypes.RECEIVE_DECKS:
             return {
-                ...state,
+                // ...state,
                 ...action.decks
             };
         case ActionTypes.CREATE_DECK:
