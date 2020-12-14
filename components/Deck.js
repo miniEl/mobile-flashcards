@@ -12,7 +12,8 @@ class Deck extends Component {
   render() {
     const { decks, navigation } = this.props;
     // const deck = decks[navigation.getParam('id')];
-    // console.log(this.props);
+    // console.log('TTTTTT');
+    // console.log(navigation.getParam('id'));
     return (
       <View style={styles.container}>
         <View style={styles.card}>
@@ -36,7 +37,7 @@ class Deck extends Component {
 }
 
 const mapStateToProps = ({ decks }) => {
-  console.log('decks');
+  console.log('After New Deck');
   console.log(decks);
   return {
     decks

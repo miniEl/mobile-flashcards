@@ -6,13 +6,13 @@ const DECKS_STORAGE_KEY = 'MerhanElkheshen:decks';
 const CARDS_STORAGE_KEY = 'MerhanElkheshen:cards';
 const NOTIFICATION_KEY = 'MerhanElkheshen:notifications';
 
-
 export const getData = () => {
+    // AsyncStorage.clear();
     return AsyncStorage.multiGet([DECKS_STORAGE_KEY, CARDS_STORAGE_KEY])
         .then((results) => {
             const obj = {};
             results.map((result) => {
-                obj[result[0].slice(12)] = result[1] ? JSON.parse(result[1]) : tempData(result[0])
+                obj[result[0].slice(16)] = result[1] ? JSON.parse(result[1]) : tempData(result[0])
             });
             return obj;
         });

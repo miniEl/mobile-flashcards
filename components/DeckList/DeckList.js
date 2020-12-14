@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './DeckListStyles';
-import { white } from '../../utils/colors';
 
 class DeckList extends Component {
   state = {
     decksList: []
   }
   componentDidMount = () => {
-    // const decks = Object.values(this.props.decks);
     console.log('PROPS::');
     console.log(this.props);
-
+    // const decks = Object.values(this.props.decks);
+    // this.setState({
+    //   decksList: decks
+    // })
   }
   render() {
     const { decksList } = this.state;
@@ -37,8 +38,8 @@ class DeckList extends Component {
 }
 
 const mapStateToProps = ({ decks }) => {
-  // console.log('decks');
-  // console.log(decks);
+  console.log('deckssss');
+  console.log(decks);
   return {
     decks
   }

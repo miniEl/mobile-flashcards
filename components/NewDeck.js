@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity, } from 'react-native';
 import { connect } from 'react-redux';
-import { handleSaveDeck } from '../actions';
+import { handleInitialData, handleSaveDeck } from '../actions';
 import styles from './GlobalStyles';
 
 class NewDeck extends Component {
@@ -17,10 +17,18 @@ class NewDeck extends Component {
 
   handleSubmit = () => {
     const { dispatch, navigation } = this.props;
-    const { title } = this.state;
-    dispatch(handleSaveDeck(title)).then((deck) => {
-      navigation.navigate('Deck', { title: deck.title, id: deck.id });
-    });
+    const { title, decks } = this.state;
+    console.log('STATE::');
+    // console.log(this.state);
+    dispatch(handleSaveDeck(title))
+      .then((deck) => {
+        navigation.navigate('Deck', { title: deck.title, id: deck.id });
+        // dispatch(handleInitialData());
+      });
+    dispatch(handleInitialData());
+    this.setState(() => ({
+      title: ''
+    }));
   }
 
   render() {
@@ -32,6 +40,7 @@ class NewDeck extends Component {
             <Text style={styles.title}>Add New Deck</Text>
           </View>
           <TextInput
+            value={title}
             style={styles.input}
             placeholder="Deck Name"
             onChangeText={text => this.handleChangeText(text)}
