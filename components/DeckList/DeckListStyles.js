@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { paleYellow, dark } from '../../utils/colors';
+import { paleYellow, dark, white } from '../../utils/colors';
 
 const styles = StyleSheet.create({
     container: {
@@ -25,6 +25,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '700'
     },
+    lightText: {
+        marginTop: 20,
+        fontSize: 20,
+        fontWeight: '700',
+        color: white
+    },
+    icon: {
+        color: white,
+        fontSize: 24
+    }
 });
 
 export default styles;

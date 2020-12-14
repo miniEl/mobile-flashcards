@@ -1,22 +1,16 @@
 import React from 'react';
-import Constants from 'expo-constants';
-import { StatusBar, View } from 'react-native';
-import MainNavigator from './components/AppNavigation/MainNavigatin';
-import { paleYellow } from './utils/colors';
+import { createStore } from 'redux';
+import reducers from "./reducers";
+import { Provider } from 'react-redux';
+import middleware from './middleware/index';
+import MainApp from './components/MainApp';
 
-function CardsStatusBar({ backgroundColor, ...props }) {
-  return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  )
-}
+const store = createStore(reducers, middleware);
 
 export default function App() {
   return (
-    <View style={{ flex: 1 }}>
-      <CardsStatusBar backgroundColor={paleYellow} barStyle="dark-content" />
-      <MainNavigator />
-    </View>
+    <Provider store={store}>
+      <MainApp />
+    </Provider>
   );
 }

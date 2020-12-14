@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-import { ScrollView, TouchableOpacity, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { ScrollView, TouchableOpacity, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import styles from './DeckListStyles';
-
+import { white } from '../../utils/colors';
 
 class DeckList extends Component {
+  state = {
+    decksList: []
+  }
+  componentDidMount = () => {
+    // const decks = Object.values(this.props.decks);
+    // console.log(decks);
+  }
   render() {
+    const { decksList } = this.state;
+    if (decksList.length <= 0) {
+      return (
+        <View style={styles.container}>
+          <Ionicons name="happy" style={styles.icon} />
+          <Text style={styles.lightText}>Let's create some decks..</Text>
+        </View>
+      )
+    }
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <TouchableOpacity style={styles.card}>
@@ -18,11 +35,11 @@ class DeckList extends Component {
 }
 
 const mapStateToProps = ({ decks }) => {
-  console.log(decks);
+  // console.log('decks');
+  // console.log(decks);
   return {
     decks
   }
 }
 
-export default DeckList;
-// export default connect(mapStateToProps)(DeckList);
+export default connect(mapStateToProps)(DeckList);

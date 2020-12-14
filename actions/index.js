@@ -1,4 +1,32 @@
 import keyMirror from "keymirror";
+import { getData, saveDeck, saveCard } from '../utils/api';
+
+export const handleInitialData = () => {
+    return (dispatch) => {
+        return getData().then(({ decks, cards }) => {
+            dispatch(receiveDecks(decks));
+            dispatch(getCards(cards));
+        });
+    }
+}
+
+export const handleSaveDeck = (title) => {
+    return (dispatch) => {
+        return saveDeck(title).then((deck) => {
+            dispatch(createDeck(deck));
+            return deck;
+        })
+    }
+}
+
+export const handleSaveCard = (deckID, question, answer) => {
+    return (dispatch) => {
+        return saveCard(deckID, question, answer).then((deckID, card) => {
+            dispatch(createCard(card));
+            dispatch(addCardToDeck(card.id, deckID));
+        });
+    }
+}
 
 export const ActionTypes = keyMirror({
     RECEIVE_DECKS: null,
@@ -28,7 +56,7 @@ export const createCard = (card) => ({
     card
 });
 
-export const addCardToDeck = (cardID, deckID)({
+export const addCardToDeck = (cardID, deckID) => ({
     type: ActionTypes.ADD_CARD_TO_DECK,
     cardID,
     deckID

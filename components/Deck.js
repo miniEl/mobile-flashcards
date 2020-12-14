@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import styles from './GlobalStyles';
 
 class Deck extends Component {
+
   render() {
+    const { decks, navigation } = this.props;
+    // const deck = decks[navigation.getParam('id')];
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <View style={styles.card}>
@@ -23,4 +28,12 @@ class Deck extends Component {
   }
 }
 
-export default Deck;
+const mapStateToProps = ({ decks }) => {
+  console.log('decks');
+  console.log(decks);
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(Deck);
