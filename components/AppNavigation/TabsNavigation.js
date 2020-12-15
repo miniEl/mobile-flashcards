@@ -9,11 +9,11 @@ import { dark, white } from '../../utils/colors';
 const Tabs = createBottomTabNavigator({
   DeckLisk: {
     screen: DeckLisk,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) =>
         <Ionicons name="layers-outline" size={24} color={tintColor} />
-    })
+    }
   },
   NewDeck: {
     screen: NewDeck,
