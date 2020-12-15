@@ -14,7 +14,7 @@ class DeckList extends Component {
     const decks = Object.values(this.props.decks);
     this.setState({
       decksList: decks
-    })
+    });
   }
 
   handleViewDeck = (deck) => {

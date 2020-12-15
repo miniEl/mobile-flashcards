@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity, } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { connect } from 'react-redux';
 import { handleSaveCard } from '../actions';
 import styles from './GlobalStyles';
 

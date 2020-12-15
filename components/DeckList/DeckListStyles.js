@@ -3,7 +3,7 @@ import { paleYellow, dark, white } from '../../utils/colors';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: dark

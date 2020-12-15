@@ -4,6 +4,7 @@ import reducers from "./reducers";
 import { Provider } from 'react-redux';
 import middleware from './middleware/index';
 import MainApp from './components/MainApp';
+import { View } from 'react-native';
 
 const store = createStore(reducers, middleware);
 

@@ -5,7 +5,7 @@ export const handleInitialData = () => {
     return (dispatch) => {
         return getData().then(({ decks, cards }) => {
             dispatch(receiveDecks(decks));
-            dispatch(getCards(cards));
+            // dispatch(getCards(cards));
         });
     }
 }
@@ -21,7 +21,7 @@ export const handleSaveDeck = (title) => {
 
 export const handleSaveCard = (deckID, question, answer) => {
     return (dispatch) => {
-        return saveCard(deckID, question, answer).then((deckID, card) => {
+        return saveCard(deckID, question, answer).then(({ deckID, card }) => {
             dispatch(createCard(card));
             dispatch(addCardToDeck(card.id, deckID));
         });
@@ -36,24 +36,21 @@ export const ActionTypes = keyMirror({
     ADD_CARD_TO_DECK: null
 });
 
-export const receiveDecks = (decks) => {
-    return {
-        type: ActionTypes.RECEIVE_DECKS,
-        decks
-    }
-};
-
-export const createDeck = (deck) => {
-    return {
-        type: ActionTypes.CREATE_DECK,
-        deck
-    }
-};
-
-export const getCards = (cards) => ({
-    type: ActionTypes.GET_CARDS,
-    cards
+export const receiveDecks = (decks) => ({
+    type: ActionTypes.RECEIVE_DECKS,
+    decks
 });
+
+export const createDeck = (deck) => ({
+
+    type: ActionTypes.CREATE_DECK,
+    deck
+});
+
+// export const getCards = (cards) => ({
+//     type: ActionTypes.GET_CARDS,
+//     cards
+// });
 
 export const createCard = (card) => ({
     type: ActionTypes.CREATE_CARD,

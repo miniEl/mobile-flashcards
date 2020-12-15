@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity, } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import { handleInitialData, handleSaveDeck } from '../actions';
+import { handleSaveDeck } from '../actions';
 import styles from './GlobalStyles';
 
 class NewDeck extends Component {
