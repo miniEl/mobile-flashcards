@@ -8,14 +8,20 @@ class DeckList extends Component {
   state = {
     decksList: []
   }
+
   componentDidMount = () => {
-    console.log('PROPS::');
-    console.log(this.props);
-    // const decks = Object.values(this.props.decks);
-    // this.setState({
-    //   decksList: decks
-    // })
+    console.log('here');
+    const decks = Object.values(this.props.decks);
+    this.setState({
+      decksList: decks
+    })
   }
+
+  handleViewDeck = (deck) => {
+    const { navigation } = this.props;
+    navigation.navigate('Deck', { title: deck.title, id: deck.id });
+  }
+
   render() {
     const { decksList } = this.state;
     if (decksList.length <= 0) {
@@ -26,20 +32,27 @@ class DeckList extends Component {
         </View>
       )
     }
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.title}>Decks List</Text>
-          <Text style={styles.text}>0 Cards</Text>
-        </TouchableOpacity>
+        {
+          decksList.map((deck) => (
+            <TouchableOpacity
+              style={styles.card}
+              key={deck.id}
+              onPress={() => this.handleViewDeck(deck)}
+            >
+              <Text style={styles.title}>{deck.title}</Text>
+              <Text style={styles.text}>{deck.cards.length} Cards</Text>
+            </TouchableOpacity>
+          ))
+        }
       </ScrollView>
     )
   }
 }
 
-const mapStateToProps = ({ decks }) => {
-  console.log('deckssss');
-  console.log(decks);
+const mapStateToProps = (decks) => {
   return {
     decks
   }

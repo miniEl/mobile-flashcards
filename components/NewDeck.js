@@ -17,15 +17,11 @@ class NewDeck extends Component {
 
   handleSubmit = () => {
     const { dispatch, navigation } = this.props;
-    const { title, decks } = this.state;
-    console.log('STATE::');
-    // console.log(this.state);
+    const { title } = this.state;
     dispatch(handleSaveDeck(title))
       .then((deck) => {
         navigation.navigate('Deck', { title: deck.title, id: deck.id });
-        // dispatch(handleInitialData());
       });
-    dispatch(handleInitialData());
     this.setState(() => ({
       title: ''
     }));

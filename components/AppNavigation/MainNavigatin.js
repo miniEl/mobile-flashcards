@@ -4,7 +4,8 @@ import { createAppContainer } from 'react-navigation';
 import Tabs from './TabsNavigation';
 import Deck from '../Deck';
 import NewCard from '../NewCard';
-import { dark, paleYellow, white } from '../../utils/colors';
+import { paleYellow } from '../../utils/colors';
+import Quiz from '../Quiz/Quiz';
 
 const MainNavigator = createStackNavigator({
     Home: {
@@ -26,6 +27,15 @@ const MainNavigator = createStackNavigator({
         screen: NewCard,
         navigationOptions: {
             headerTitle: 'Add New Card',
+            headerStyle: {
+                backgroundColor: paleYellow
+            }
+        }
+    },
+    Quiz: {
+        screen: Quiz,
+        navigationOptions: {
+            headerTitle: 'Quiz',
             headerStyle: {
                 backgroundColor: paleYellow
             }

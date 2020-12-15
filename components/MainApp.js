@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import Constants from 'expo-constants';
 import { StatusBar, View } from 'react-native';
 import { paleYellow } from '../utils/colors';
-import { handleInitialData, receiveDecks } from '../actions';
+import { handleInitialData } from '../actions';
 import { setLocalNotification } from '../utils/api';
 import MainNavigator from './AppNavigation/MainNavigatin';
-import { getData } from '../utils/api';
+import AppLoading from 'expo-app-loading';
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -17,26 +17,20 @@ function AppStatusBar({ backgroundColor, ...props }) {
 }
 
 class MainApp extends Component {
+  state = {
+    isLoaded: false
+  }
   componentDidMount = () => {
-    console.log('functions');
-    // console.log(handleInitialData());
-    // this.props.dispatch(handleInitialData()).then((value) => {
-    //   console.log('PROPS::');
-    //   console.log(value);
-    // });
-    getData().then(({ decks, cards }) => {
-      this.props.receiveDecks(decks);
-
-      // dispatch(receiveDecks(decks));
-      // dispatch(getCards(cards));
-    });
-
+    this.props.dispatch(handleInitialData())
+      .then(() => this.setState(() => ({ isLoaded: true })));
     setLocalNotification();
   }
 
   render() {
-    console.log('VVVVVVVV::');
-    console.log(this.props);
+    const { isLoaded } = this.state;
+    if (!isLoaded) {
+      return <AppLoading />
+    }
     return (
       <View style={{ flex: 1 }}>
         <AppStatusBar backgroundColor={paleYellow} barStyle="dark-content" />
@@ -46,17 +40,10 @@ class MainApp extends Component {
   }
 }
 
-const mapStateToProps = ({ decks }) => {
-  console.log('RRRRRRRRRRRRR');
-  console.log(decks);
+const mapStateToProps = (decks) => {
   return {
     decks
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    receiveDecks: (decks) => dispatch(receiveDecks(decks)),
-  };
 
-};
-export default connect(mapStateToProps, mapDispatchToProps)(MainApp);
+export default connect(mapStateToProps)(MainApp);

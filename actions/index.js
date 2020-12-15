@@ -4,8 +4,6 @@ import { getData, saveDeck, saveCard } from '../utils/api';
 export const handleInitialData = () => {
     return (dispatch) => {
         return getData().then(({ decks, cards }) => {
-            // console.log('VVVVVVVV::');
-            // console.log(decks);
             dispatch(receiveDecks(decks));
             dispatch(getCards(cards));
         });
@@ -39,8 +37,6 @@ export const ActionTypes = keyMirror({
 });
 
 export const receiveDecks = (decks) => {
-    console.log('SSSSSSSSSSS');
-    console.log(decks);
     return {
         type: ActionTypes.RECEIVE_DECKS,
         decks

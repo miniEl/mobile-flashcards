@@ -5,29 +5,36 @@ import styles from './GlobalStyles';
 
 class Deck extends Component {
 
-  handleAddCard = () => {
+  handleAddCard = (deckID) => {
     const { navigation } = this.props;
+    navigation.navigate('NewCard', { deckID });
+  }
+
+  handleViewQuiz = (deckID) => {
+    const { navigation } = this.props;
+    navigation.navigate('Quiz', { deckID });
   }
 
   render() {
     const { decks, navigation } = this.props;
-    // const deck = decks[navigation.getParam('id')];
-    // console.log('TTTTTT');
-    // console.log(navigation.getParam('id'));
+    const deck = decks[navigation.getParam('id')];
     return (
       <View style={styles.container}>
         <View style={styles.card}>
           <View style={styles.cardHeader}>
-            <Text style={styles.title}>Deck Name</Text>
-            <Text style={styles.subtitle}>3 Cards</Text>
+            <Text style={styles.title}>{deck.title}</Text>
+            <Text style={styles.subtitle}>{deck.cards.length} Cards</Text>
           </View>
           <TouchableOpacity
             style={styles.lightButton}
-            onPress={() => handleAddCard()}
+            onPress={() => this.handleAddCard(deck.id)}
           >
             <Text style={styles.lightButtonText}>Add Card</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.darkButton}>
+          <TouchableOpacity
+            style={styles.darkButton}
+            onPress={() => this.handleViewQuiz(deck.id)}
+          >
             <Text style={styles.darkButtonText}>Start Quiz</Text>
           </TouchableOpacity>
         </View>
@@ -36,11 +43,9 @@ class Deck extends Component {
   }
 }
 
-const mapStateToProps = ({ decks }) => {
-  console.log('After New Deck');
-  console.log(decks);
+const mapStateToProps = (decks) => {
   return {
-    decks
+    decks,
   }
 }
 

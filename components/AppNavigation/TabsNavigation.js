@@ -4,16 +4,16 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import DeckLisk from '../DeckList/DeckList';
 import NewDeck from '../NewDeck';
 import { Ionicons } from '@expo/vector-icons';
-import { paleYellow, dark, white } from '../../utils/colors';
+import { dark, white } from '../../utils/colors';
 
 const Tabs = createBottomTabNavigator({
   DeckLisk: {
     screen: DeckLisk,
-    navigationOptions: {
+    navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) =>
         <Ionicons name="layers-outline" size={24} color={tintColor} />
-    }
+    })
   },
   NewDeck: {
     screen: NewDeck,
