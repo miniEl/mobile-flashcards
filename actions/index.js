@@ -5,7 +5,7 @@ export const handleInitialData = () => {
     return (dispatch) => {
         return getData().then(({ decks, cards }) => {
             dispatch(receiveDecks(decks));
-            // dispatch(getCards(cards));
+            dispatch(getCards(cards));
         });
     }
 }
@@ -47,10 +47,10 @@ export const createDeck = (deck) => ({
     deck
 });
 
-// export const getCards = (cards) => ({
-//     type: ActionTypes.GET_CARDS,
-//     cards
-// });
+export const getCards = (cards) => ({
+    type: ActionTypes.GET_CARDS,
+    cards
+});
 
 export const createCard = (card) => ({
     type: ActionTypes.CREATE_CARD,

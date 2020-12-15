@@ -10,10 +10,16 @@ class DeckList extends Component {
   }
 
   componentDidMount = () => {
-    console.log('here');
+    let newDecks = [];
     const decks = Object.values(this.props.decks);
+    for (let i = 0; i < decks.length; i++) {
+      const element = decks[i];
+      if (element.cards) {
+        newDecks.push(element);
+      }
+    }
     this.setState({
-      decksList: decks
+      decksList: newDecks
     });
   }
 
