@@ -7,6 +7,11 @@ class Question extends Component {
   state = {
     showAnswer: false
   }
+
+  handleToggle = () => {
+    this.setState({ showAnswer: !this.state.showAnswer });
+  }
+
   render() {
     const { question, answer, index, total, correct, wrong } = this.props;
     const { showAnswer } = this.state;
@@ -22,7 +27,7 @@ class Question extends Component {
             }
             <TouchableOpacity
               style={styles.toggle}
-              onPress={() => this.setState({ showAnswer: !this.state.showAnswer })}>
+              onPress={() => this.handleToggle()}>
               <Text style={styles.toggleText}>
                 {
                   !showAnswer ?
@@ -34,13 +39,13 @@ class Question extends Component {
             <View style={styles.actionsWrapper}>
               <TouchableOpacity
                 style={styles.lightButton}
-                onPress={() => correct()}
+                onPress={() => { this.handleToggle(); correct(); }}
               >
                 <Text style={styles.lightButtonText}>Correct</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.darkButton}
-                onPress={() => wrong()}
+                onPress={() => { this.handleToggle(); wrong(); }}
               >
                 <Text style={styles.darkButtonText}>Wrong</Text>
               </TouchableOpacity>

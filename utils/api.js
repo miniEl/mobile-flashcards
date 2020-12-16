@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { Notifications } from 'expo';
+import { Notifications } from 'expo-notifications';
 import * as Permissions from "expo-permissions";
 
 const DECKS_STORAGE_KEY = 'MerhanElkheshen:decks';

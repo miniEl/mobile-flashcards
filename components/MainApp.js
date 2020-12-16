@@ -20,6 +20,7 @@ class MainApp extends Component {
   state = {
     isLoaded: false
   }
+
   componentDidMount = () => {
     this.props.dispatch(handleInitialData())
       .then(() => this.setState(() => ({ isLoaded: true })));

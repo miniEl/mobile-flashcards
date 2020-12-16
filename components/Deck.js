@@ -31,12 +31,16 @@ class Deck extends Component {
           >
             <Text style={styles.lightButtonText}>Add Card</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.darkButton}
-            onPress={() => this.handleViewQuiz(deck.id)}
-          >
-            <Text style={styles.darkButtonText}>Start Quiz</Text>
-          </TouchableOpacity>
+          {
+            deck.cards.length > 0
+              ? <TouchableOpacity
+                style={styles.darkButton}
+                onPress={() => this.handleViewQuiz(deck.id)}
+              >
+                <Text style={styles.darkButtonText}>Start Quiz</Text>
+              </TouchableOpacity>
+              : null
+          }
         </View>
       </View>
     );

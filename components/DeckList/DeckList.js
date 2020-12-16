@@ -10,16 +10,9 @@ class DeckList extends Component {
   }
 
   componentDidMount = () => {
-    let newDecks = [];
     const decks = Object.values(this.props.decks);
-    for (let i = 0; i < decks.length; i++) {
-      const element = decks[i];
-      if (element.cards) {
-        newDecks.push(element);
-      }
-    }
     this.setState({
-      decksList: newDecks
+      decksList: decks
     });
   }
 
@@ -29,8 +22,14 @@ class DeckList extends Component {
   }
 
   render() {
-    const { decksList } = this.state;
-    if (decksList.length <= 0) {
+    const obj = Object.values(this.props.decks);
+    let decksArr = [];
+    obj.map((item) => {
+      if (item.cards) decksArr.push(item);
+      return decksArr;
+    })
+
+    if (decksArr.length <= 0) {
       return (
         <View style={styles.container}>
           <Ionicons name="happy" style={styles.icon} />
@@ -42,7 +41,7 @@ class DeckList extends Component {
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {
-          decksList.map((deck) => (
+          decksArr.map((deck) => (
             <TouchableOpacity
               style={styles.card}
               key={deck.id}
